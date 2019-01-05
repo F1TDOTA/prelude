@@ -71,7 +71,7 @@
 (add-to-list 'load-path prelude-core-dir)
 (add-to-list 'load-path prelude-modules-dir)
 (add-to-list 'load-path prelude-vendor-dir)
-+(prelude-add-subfolders-to-load-path prelude-vendor-dir)
+(prelude-add-subfolders-to-load-path prelude-vendor-dir)
 
 
 ; 加载个人目录的preload目录脚本
