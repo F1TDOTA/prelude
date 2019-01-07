@@ -1,46 +1,32 @@
-;;; prelude-packages.el --- Emacs Prelude: default package selection.
-;;
-;; Copyright © 2011-2015 Bozhidar Batsov
-;;
-;; Author: Bozhidar Batsov <bozhidar@batsov.com>
-;; URL: https://github.com/bbatsov/prelude
-;; Version: 1.0.0
-;; Keywords: convenience
-
-;; This file is not part of GNU Emacs.
-
-;;; Commentary:
-
-;; Takes care of the automatic installation of all the packages required by
-;; Emacs Prelude.
-
-;;; License:
-
-;; This program is free software; you can redistribute it and/or
-;; modify it under the terms of the GNU General Public License
-;; as published by the Free Software Foundation; either version 3
-;; of the License, or (at your option) any later version.
-;;
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-;;
-;; You should have received a copy of the GNU General Public License
-;; along with GNU Emacs; see the file COPYING.  If not, write to the
-;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
-;; Boston, MA 02110-1301, USA.
-
-;;; Code:
+; emacs中的package包管理插件
+; 该文件主要关注如何自动安装当前emacs正常运行所需要的安装包
 (require 'cl)
 (require 'package)
 
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
-;; set package-user-dir to be relative to Prelude install path
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (proto (if no-ssl "http" "https")))
+  (when no-ssl
+    (warn "\
+Your version of Emacs does not support SSL connections,
+which is unsafe because it allows man-in-the-middle attacks.
+There are two things you can do about this warning:
+1. Install an Emacs version that does support SSL and be safe.
+2. Remove this warning from your init file so you won't see it again."))
+  ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
+  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+  ;;(add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
+  (when (< emacs-major-version 24)
+    ;; For important compatibility libraries like cl-lib
+    (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
+			 
+; 定义package-user-dir目录
 (setq package-user-dir (expand-file-name "elpa" prelude-dir))
+
+; 包管理插件初始化
 (package-initialize)
 
+; 定义prelude-packages变量
 (defvar prelude-packages
   '(ace-window
     avy
@@ -76,6 +62,7 @@
     zop-to-char)
   "A list of packages to ensure are installed at launch.")
 
+
 (defun prelude-packages-installed-p ()
   "Check if all packages in `prelude-packages' are installed."
   (every #'package-installed-p prelude-packages))
@@ -92,7 +79,11 @@
 Missing packages are installed automatically."
   (mapc #'prelude-require-package packages))
 
+  
+
 (define-obsolete-function-alias 'prelude-ensure-module-deps 'prelude-require-packages)
+
+
 
 (defun prelude-install-packages ()
   "Install all packages listed in `prelude-packages'."
@@ -106,6 +97,9 @@ Missing packages are installed automatically."
 
 ;; run package installation
 (prelude-install-packages)
+
+
+
 
 (defun prelude-list-foreign-packages ()
   "Browse third-party packages not bundled with Prelude.
@@ -181,6 +175,7 @@ PACKAGE is installed only if not already present.  The file is opened in MODE."
 
 (when (package-installed-p 'pkgbuild-mode)
   (add-to-list 'auto-mode-alist '("PKGBUILD\\'" . pkgbuild-mode)))
+
 
 ;; build auto-install mappings
 (mapc
