@@ -511,5 +511,5 @@ With a prefix argument ARG, find the `user-init-file' instead."
           (add-to-list 'symbol-names (substring-no-properties name))
           (add-to-list 'name-and-pos (cons (substring-no-properties name) position))))))))
 
-(provide 'prelude-core)
+(provide 'prelude-core-4)
 ;;; prelude-core.el ends here

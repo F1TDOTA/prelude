@@ -111,5 +111,5 @@
   "Turn off `prelude-mode'."
   (prelude-mode -1))
 
-(provide 'prelude-mode)
+(provide 'prelude-mode-5)
 ;;; prelude-mode.el ends here

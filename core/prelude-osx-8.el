@@ -71,5 +71,5 @@ Windows external keyboard from time to time."
     (set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend))
 
 
-(provide 'prelude-osx)
+(provide 'prelude-osx-8)
 ;;; prelude-osx.el ends here

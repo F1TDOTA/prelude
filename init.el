@@ -87,19 +87,19 @@
 (message "Begin to load core...")
 
 ; 加载核心库
-(require 'prelude-packages)
+(require 'prelude-packages-1)
 
 ; custom需要在core, editor and ui前面加载
-(require 'prelude-custom)
-(require 'prelude-ui)
-(require 'prelude-core)
-(require 'prelude-mode)
-(require 'prelude-editor)
-(require 'prelude-global-keybindings)
+(require 'prelude-custom-2)
+(require 'prelude-ui-3)
+(require 'prelude-core-4)
+(require 'prelude-mode-5)
+(require 'prelude-editor-6)
+(require 'prelude-global-keybindings-7)
 
 ; macos系统额外库
 (when (eq system-type 'darwin)
-  (require 'prelude-osx))
+  (require 'prelude-osx-8))
 
   
  

@@ -82,6 +82,6 @@ Only modes that don't derive from `prog-mode' should be listed here."
   :group 'prelude)
 
 ; 包名
-(provide 'prelude-custom)
+(provide 'prelude-custom-2)
 
 ;;; prelude-custom.el ends here

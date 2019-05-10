@@ -79,6 +79,6 @@
 (global-set-key (kbd "s-.") 'avy-goto-word-or-subword-1)
 (global-set-key (kbd "s-w") 'ace-window)
 
-(provide 'prelude-global-keybindings)
+(provide 'prelude-global-keybindings-7)
 
 ;;; prelude-global-keybindings.el ends here

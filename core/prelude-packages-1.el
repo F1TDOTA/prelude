@@ -174,7 +174,7 @@ PACKAGE is installed only if not already present.  The file is opened in MODE."
        (prelude-auto-install extension package mode))))
  prelude-auto-install-alist)
 
-(provide 'prelude-packages)
+(provide 'prelude-packages-1)
 ;; Local Variables:
 ;; byte-compile-warnings: (not cl-functions)
 ;; End:

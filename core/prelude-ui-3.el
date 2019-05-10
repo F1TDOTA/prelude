@@ -48,5 +48,5 @@
 (require 'beacon)
 (beacon-mode +1)
 
-(provide 'prelude-ui)
+(provide 'prelude-ui-3)
 ;;; prelude-ui.el ends here
