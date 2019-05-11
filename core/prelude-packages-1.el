@@ -179,3 +179,5 @@ PACKAGE is installed only if not already present.  The file is opened in MODE."
  ;; 导出模块
 (provide 'prelude-packages-1)
 
+
+;;; prelude-packages-1.el ends here
