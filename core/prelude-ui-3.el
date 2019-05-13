@@ -13,9 +13,9 @@
 ;; 禁用掉启动屏幕
 (setq inhibit-startup-screen t)
 
-;; 优化滚动条，还有5行时开始滚动，一次滚动一行
+;; 优化滚动条，还有1行时开始滚动，一次滚动一行
 ;; 再次滚动回来的时候，光标位于滚动前的那个位置
-(setq scroll-margin 5
+(setq scroll-margin 1
       scroll-conservatively 100000
       scroll-preserve-screen-position 1)
 
